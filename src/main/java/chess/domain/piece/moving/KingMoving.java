@@ -3,7 +3,7 @@ package chess.domain.piece.moving;
 import chess.domain.Position;
 import chess.domain.piece.direction.KingDirections;
 import chess.domain.piece.direction.PieceDirections;
-import chess.exception.ImpossibleMoveException;
+import chess.domain.game.ImpossibleMoveException;
 
 import java.util.ArrayList;
 import java.util.List;

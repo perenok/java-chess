@@ -1,11 +1,14 @@
-package chess.domain;
+package chess.domain.game;
 
+import chess.domain.Position;
+import chess.domain.Score;
+import chess.domain.TeamColor;
 import chess.domain.piece.*;
-import chess.exception.ImpossibleMoveException;
-import chess.exception.PieceNotFoundException;
+import chess.view.PositionDto;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static chess.domain.TeamColor.BLACK;
 import static chess.domain.TeamColor.WHITE;
@@ -81,6 +84,10 @@ public class ChessGame {
 
     public Map<Position, String> nameGroupingByPosition() {
         return pieces.nameGroupingByPosition();
+    }
+
+    public Map<PositionDto, String> nameGroupingByPosition2() {
+        return pieces.nameGroupingByPosition2();
     }
 
     public Piece piece(final Position position) {

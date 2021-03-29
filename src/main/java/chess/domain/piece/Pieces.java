@@ -3,8 +3,9 @@ package chess.domain.piece;
 import chess.domain.Position;
 import chess.domain.Score;
 import chess.domain.TeamColor;
-import chess.exception.ImpossibleMoveException;
-import chess.exception.PieceNotFoundException;
+import chess.domain.game.ImpossibleMoveException;
+import chess.domain.game.PieceNotFoundException;
+import chess.view.PositionDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -137,5 +138,10 @@ public class Pieces {
     public Map<Position, String> nameGroupingByPosition() {
         return pieces.stream()
                 .collect(toMap(Piece::currentPosition, Piece::name));
+    }
+
+    public Map<PositionDto, String> nameGroupingByPosition2() {
+        return pieces.stream()
+                .collect(toMap(piece -> new PositionDto(piece.currentPosition()), Piece::name));
     }
 }

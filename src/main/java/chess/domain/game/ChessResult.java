@@ -1,4 +1,6 @@
-package chess.domain;
+package chess.domain.game;
+
+import chess.domain.Score;
 
 public class ChessResult {
     private final Score whiteTeamScore;

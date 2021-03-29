@@ -1,6 +1,6 @@
 package chess.view;
 
-import chess.domain.ChessResult;
+import chess.domain.game.ChessResult;
 import chess.domain.Position;
 import chess.domain.TeamColor;
 
@@ -22,7 +22,7 @@ public class OutputView {
 
     public static void printBoard(BoardDto boardDto) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int y = boardDto.boardSize() - 1; y >= 0; y--) {
+        for (int y = boardDto.getBoardSize() - 1; y >= 0; y--) {
             appendPieceNames(boardDto, stringBuilder, y);
             stringBuilder.append(System.lineSeparator());
         }
@@ -30,9 +30,9 @@ public class OutputView {
     }
 
     private static void appendPieceNames(BoardDto boardDto, StringBuilder stringBuilder, int column) {
-        stringBuilder.append(IntStream.range(0, boardDto.boardSize())
+        stringBuilder.append(IntStream.range(0, boardDto.getBoardSize())
                 .mapToObj(x -> Position.of(x, column))
-                .map(currentPosition -> boardDto.board().getOrDefault(currentPosition, "."))
+                .map(currentPosition -> boardDto.getBoard().getOrDefault(currentPosition, "."))
                 .collect(Collectors.joining()));
     }
 
