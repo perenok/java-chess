@@ -3,17 +3,17 @@ package chess.domain.piece;
 import chess.domain.Position;
 import chess.domain.Score;
 import chess.domain.TeamColor;
-import chess.exception.ImpossibleMoveException;
-import chess.exception.PieceNotFoundException;
+import chess.domain.game.ImpossibleMoveException;
+import chess.domain.game.PieceNotFoundException;
+import chess.view.PieceDto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.toList;
 
 public class Pieces {
 
@@ -134,8 +134,9 @@ public class Pieces {
                 .orElseThrow(PieceNotFoundException::new);
     }
 
-    public Map<Position, String> nameGroupingByPosition() {
+    public List<PieceDto> getPieces() {
         return pieces.stream()
-                .collect(toMap(Piece::currentPosition, Piece::name));
+                .map(PieceDto::new)
+                .collect(toList());
     }
 }

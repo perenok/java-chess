@@ -1,11 +1,10 @@
 package chess.view;
 
-import chess.domain.ChessResult;
 import chess.domain.Position;
 import chess.domain.TeamColor;
+import chess.domain.game.ChessResult;
 
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 
 public class OutputView {
@@ -29,11 +28,33 @@ public class OutputView {
         System.out.println(stringBuilder);
     }
 
+//    private static void appendPieceNames2(BoardDto boardDto, StringBuilder stringBuilder, int column) {
+//        stringBuilder.append(IntStream.range(0, boardDto.getBoardSize())
+//                .mapToObj(x -> Position.of(x, column))
+//                .map(currentPosition -> boardDto.getBoard().getOrDefault(currentPosition, "."))
+//                .collect(Collectors.joining()));
+//    }
+
     private static void appendPieceNames(BoardDto boardDto, StringBuilder stringBuilder, int column) {
-        stringBuilder.append(IntStream.range(0, boardDto.boardSize())
-                .mapToObj(x -> Position.of(x, column))
-                .map(currentPosition -> boardDto.board().getOrDefault(currentPosition, "."))
-                .collect(Collectors.joining()));
+        for (int x = 0; x < boardDto.getBoardSize(); x++) {
+            PositionDto currentPosition = new PositionDto(Position.of(x, column));
+            appendEmptyPosition(boardDto, stringBuilder, currentPosition);
+            stringBuilder.append(
+                    boardDto.getPieces()
+                            .stream()
+                            .filter(piece -> piece.getCurrentPosition().equals(currentPosition.getPosition()))
+                            .map(PieceDto::getName)
+                            .collect(Collectors.joining())
+            );
+        }
+    }
+
+    private static void appendEmptyPosition(BoardDto boardDto, StringBuilder stringBuilder, PositionDto currentPosition) {
+        if (boardDto.getPieces()
+                .stream()
+                .noneMatch(piece -> piece.getCurrentPosition().equals(currentPosition.getPosition()))) {
+            stringBuilder.append(".");
+        }
     }
 
     public static void printStartGame() {
@@ -48,10 +69,10 @@ public class OutputView {
     }
 
     public static void printResult(ChessResult chessResult) {
-        printByFormat(SCORE_FORM, TeamColor.WHITE, chessResult.whiteTeamScore().value());
-        printByFormat(SCORE_FORM, TeamColor.BLACK, chessResult.blackTeamScore().value());
+        printByFormat(SCORE_FORM, TeamColor.WHITE, chessResult.getWhiteTeamScore());
+        printByFormat(SCORE_FORM, TeamColor.BLACK, chessResult.getBlackTeamScore());
         TeamColor winner = TeamColor.BLACK;
-        if (chessResult.whiteTeamScore().isBiggerThan(chessResult.blackTeamScore())) {
+        if (chessResult.getWhiteTeamScore() > chessResult.getBlackTeamScore()) {
             winner = TeamColor.WHITE;
         }
         printWinner(winner);

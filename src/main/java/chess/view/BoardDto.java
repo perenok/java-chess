@@ -1,17 +1,17 @@
 package chess.view;
 
-import chess.domain.Position;
-
-import java.util.Map;
+import java.util.List;
 
 public class BoardDto {
 
-    private final Map<Position, String> board;
+    private final List<PieceDto> pieces;
     private final int boardSize;
+    private final String currentTeam;
 
-    public BoardDto(Map<Position, String> board, int boardSize) {
-        this.board = board;
+    public BoardDto(List<PieceDto> pieces, int boardSize, String currentTeam) {
+        this.pieces = pieces;
         this.boardSize = boardSize;
+        this.currentTeam = currentTeam;
     }
 
     public Map<Position, String> board() {
@@ -20,5 +20,9 @@ public class BoardDto {
 
     public int boardSize() {
         return boardSize;
+    }
+
+    public String getCurrentTeam() {
+        return currentTeam;
     }
 }

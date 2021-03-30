@@ -1,10 +1,9 @@
 package chess.domain;
 
 import chess.domain.piece.*;
-import chess.exception.ImpossibleMoveException;
-import chess.exception.PieceNotFoundException;
+import chess.view.PieceDto;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
 import static chess.domain.TeamColor.BLACK;
@@ -79,10 +78,6 @@ public class ChessGame {
         return enemyAttackPositions.contains(king.currentPosition());
     }
 
-    public Map<Position, String> nameGroupingByPosition() {
-        return pieces.nameGroupingByPosition();
-    }
-
     public Piece piece(final Position position) {
         return pieces.pieceByPosition(position);
     }
@@ -91,11 +86,19 @@ public class ChessGame {
         return currentColor.reverse();
     }
 
-    public int boardSize() {
-        return BOARD_SIZE;
-    }
-
     public ChessResult result() {
         return new ChessResult(totalScoreByTeamColor(WHITE), totalScoreByTeamColor(BLACK));
+    }
+
+    public List<PieceDto> getPieces() {
+        return pieces.getPieces();
+    }
+
+    public String getCurrentColor() {
+        return currentColor.toString();
+    }
+
+    public int getBoardSize() {
+        return BOARD_SIZE;
     }
 }

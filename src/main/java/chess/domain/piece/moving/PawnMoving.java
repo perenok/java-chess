@@ -1,8 +1,8 @@
 package chess.domain.piece.moving;
 
 import chess.domain.Position;
+import chess.domain.game.ImpossibleMoveException;
 import chess.domain.piece.direction.PawnDirections;
-import chess.exception.ImpossibleMoveException;
 
 import java.util.ArrayList;
 import java.util.List;

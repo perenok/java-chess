@@ -17,7 +17,7 @@ public class ChessAction {
 
     public GameStatus start() {
         chessGame = new ChessGame();
-        OutputView.printBoard(new BoardDto(chessGame.nameGroupingByPosition(), chessGame.boardSize()));
+        OutputView.printBoard(new BoardDto(chessGame.getPieces(), chessGame.getBoardSize(), chessGame.getCurrentColor()));
         return GameStatus.RUN;
     }
 
@@ -31,7 +31,7 @@ public class ChessAction {
         Position targetPosition = positions.get(1);
         chessGame.move(currentPosition, targetPosition);
 
-        OutputView.printBoard(new BoardDto(chessGame.nameGroupingByPosition(), chessGame.boardSize()));
+        OutputView.printBoard(new BoardDto(chessGame.getPieces(), chessGame.getBoardSize(), chessGame.getCurrentColor()));
 
         return chessStatus();
     }
