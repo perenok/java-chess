@@ -1,5 +1,8 @@
-package chess.domain;
+package chess.domain.game;
 
+import chess.domain.Position;
+import chess.domain.Score;
+import chess.domain.TeamColor;
 import chess.domain.piece.*;
 import chess.view.PieceDto;
 

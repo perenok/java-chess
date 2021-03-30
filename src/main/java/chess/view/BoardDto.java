@@ -14,11 +14,11 @@ public class BoardDto {
         this.currentTeam = currentTeam;
     }
 
-    public Map<Position, String> board() {
-        return board;
+    public List<PieceDto> getPieces() {
+        return pieces;
     }
 
-    public int boardSize() {
+    public int getBoardSize() {
         return boardSize;
     }
 

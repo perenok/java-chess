@@ -21,7 +21,7 @@ public class OutputView {
 
     public static void printBoard(BoardDto boardDto) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int y = boardDto.boardSize() - 1; y >= 0; y--) {
+        for (int y = boardDto.getBoardSize() - 1; y >= 0; y--) {
             appendPieceNames(boardDto, stringBuilder, y);
             stringBuilder.append(System.lineSeparator());
         }

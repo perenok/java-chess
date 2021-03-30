@@ -1,9 +1,10 @@
 package chess.domain;
 
 
+import chess.domain.game.ChessGame;
+import chess.domain.game.ImpossibleMoveException;
+import chess.domain.game.PieceNotFoundException;
 import chess.domain.piece.*;
-import chess.exception.ImpossibleMoveException;
-import chess.exception.PieceNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
