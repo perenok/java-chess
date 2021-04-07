@@ -40,11 +40,12 @@ public class BoardDao {
         if (!rs.next()) {
             throw new IllegalArgumentException("Board가 DB에 없습니다.");
         }
+        String boardName = rs.getString("name");
         int boardSize = rs.getInt("board_size");
         String turn = rs.getString("turn");
         boolean checked = rs.getBoolean("checked");
         boolean isKingDead = rs.getBoolean("king_dead");
-        BoardDto boardDto = new BoardDto(pieces, boardSize, turn, checked, isKingDead);
+        BoardDto boardDto = new BoardDto(pieces, boardSize, turn, checked, isKingDead, boardName);
         rs.close();
         pstmt.close();
         return boardDto;

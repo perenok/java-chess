@@ -10,24 +10,39 @@ USE chessdb;
 
 CREATE TABLE board
 (
-    id         INT AUTO_INCREMENT NOT NULL,
-    board_size INT                NOT NULL,
-    turn       VARCHAR(10)        NOT NULL,
+    name       VARCHAR(30) NOT NULL,
+    board_size INT         NOT NULL,
+    turn       VARCHAR(10) NOT NULL,
     checked    BOOLEAN,
     king_dead  BOOLEAN,
-    PRIMARY KEY (id)
+    PRIMARY KEY (name)
 );
 
 CREATE TABLE piece
 (
-    id       INT AUTO_INCREMENT NOT NULL,
-    name     VARCHAR(10)        NOT NULL,
-    team     VARCHAR(10)        NOT NULL,
-    score    INT                NOT NULL,
-    position VARCHAR(10)        NOT NULL,
-    board_id INT                NOT NULL,
+    id         INT AUTO_INCREMENT NOT NULL,
+    name       VARCHAR(10)        NOT NULL,
+    team       VARCHAR(10)        NOT NULL,
+    score      INT                NOT NULL,
+    position   VARCHAR(10)        NOT NULL,
+    board_name VARCHAR(30)        NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (board_id) references board (id)
+    FOREIGN KEY (board_name) references board (name)
 );
+
+CREATE TABLE move_log
+(
+    id               INT AUTO_INCREMENT NOT NULL,
+    board_name       VARCHAR(30)        NOT NULL,
+    piece_name       VARCHAR(10)        NOT NULL,
+    current_position VARCHAR(10)        NOT NULL,
+    target_position  VARCHAR(10)        NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (board_name) REFERENCES board (name)
+);
+
+DROP TABLE move_log;
+DROP TABLE piece;
+DROP TABLE board;
 
 

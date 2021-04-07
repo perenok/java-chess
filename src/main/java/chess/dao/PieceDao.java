@@ -13,7 +13,7 @@ public class PieceDao {
 
     private final DBConnection dbConnection = DBConnection.getInstance();
 
-    public void addPiece(String pieceName, String pieceTeam, double pieceScore, String piecePosition, int boardId) throws SQLException {
+    public void add(String pieceName, String pieceTeam, double pieceScore, String piecePosition, int boardId) throws SQLException {
         String sql = "INSERT INTO piece(name, team, score, position, board_id) VALUES (?,?,?,?,?)";
         PreparedStatement pstmt = dbConnection.connection().prepareStatement(sql);
         pstmt.setString(1, pieceName);
@@ -28,7 +28,7 @@ public class PieceDao {
         pstmt.close();
     }
 
-    public void updatePiece(String currentPosition, String targetPosition) throws SQLException {
+    public void update(String currentPosition, String targetPosition) throws SQLException {
         String sql = "UPDATE piece SET position = ? WHERE position = ?";
         PreparedStatement pstmt = dbConnection.connection().prepareStatement(sql);
         pstmt.setString(1, targetPosition);
@@ -40,7 +40,7 @@ public class PieceDao {
         pstmt.close();
     }
 
-    public List<PieceDto> selectAllPiece() throws SQLException {
+    public List<PieceDto> selectAll() throws SQLException {
         String sql = "SELECT * FROM piece";
         PreparedStatement pstmt = dbConnection.connection().prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
